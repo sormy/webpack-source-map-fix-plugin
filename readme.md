@@ -25,7 +25,7 @@ path
 ## Usage ##
 
 ```shell
-npm install webpack-source-map-fix-plugin
+npm install webpack-source-map-fix-plugin --save-dev
 ```
 
 webpack.config.js:
