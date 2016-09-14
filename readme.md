@@ -18,9 +18,9 @@ path
   .replace('webpack:///~/', 'webpack:///node_modules/');
 ```
 
-`/~/` is well know alias for node_modules when css import is used
-`/./` is relative to root import
-`webpack:///webpack:///` comes from buggy url rewrite engine
+- `/~/` is well know alias for node_modules when css import is used
+- `/./` is relative to root import
+- `webpack:///webpack:///` comes from buggy url rewrite engine
 
 ## Usage ##
 
