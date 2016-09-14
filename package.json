@@ -1,0 +1,22 @@
+{
+  "name": "webpack-source-map-fix-plugin",
+  "version": "1.0.0",
+  "description": "Webpack plugin to fix trivial path problems in source maps",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sormy/webpack-source-map-fix-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "source-map",
+    "fix",
+    "plugin"
+  ],
+  "author": "Artem Butusov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sormy/webpack-source-map-fix-plugin/issues"
+  },
+  "homepage": "https://github.com/sormy/webpack-source-map-fix-plugin#readme"
+}
