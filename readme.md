@@ -44,3 +44,8 @@ module.exports = {
   ...
 }
 ...
+```
+
+## Limitations ##
+
+Current verson will work only if source maps are bundled in separate files.
