@@ -67,7 +67,7 @@ webpack.config.js:
 ```javascript
 ...
 
-var WebpackSourceMapFixPlugin = require('webpack-source-map-fix-plugin');
+var SourceMapFixPlugin = require('webpack-source-map-fix-plugin');
 
 module.exports = {
   ...
@@ -75,7 +75,7 @@ module.exports = {
   ...
   plugins: [
     ...
-    new WebpackSourceMapFixPlugin()
+    new SourceMapFixPlugin()
   ];
   ...
 }
