@@ -27,10 +27,13 @@ SourceMapFixPlugin.prototype.fixSourceMapObject = function (sourceMap) {
 };
 
 SourceMapFixPlugin.prototype.fixSourcePath = function (path) {
-  return path
-    .replace('webpack:///webpack:///', 'webpack:///')
-    .replace('webpack:///./', 'webpack:///')
-    .replace('webpack:///~/', 'webpack:///node_modules/');
+  var relPath = path
+    .replace(/^.*~/, '~')
+    .replace(/^(webpack:\/\/\/)+/, '')
+    .replace(/^\.\//, '')
+    .replace(/^\(webpack\)-/, '(webpack)/')
+    .replace(/^webpack\/bootstrap/, '(webpack)/bootstrap');
+  return 'webpack:///' + relPath + '?' + info.hash;
 };
 
 module.exports = SourceMapFixPlugin;

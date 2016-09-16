@@ -1,5 +1,32 @@
 # Webpack Source Map Fix Plugin #
 
+## DEPRECATION NOTICE ##
+
+The same or even better effect could be reached without this plugin
+if you will use alternative webpack configuration for `devtoolModuleFilenameTemplate`:
+
+```javascript
+modules.exports = {
+  ...
+
+  output: {
+    ...
+
+    devtoolModuleFilenameTemplate: function (info) {
+      var relPath = info.resourcePath
+        .replace(/^.*~/, '~')
+        .replace(/^(webpack:\/\/\/)+/, '')
+        .replace(/^\.\//, '')
+        .replace(/^\(webpack\)-/, '(webpack)/')
+        .replace(/^webpack\/bootstrap/, '(webpack)/bootstrap');
+      return 'webpack:///' + relPath + '?' + info.hash;
+    }
+  }
+
+  ...
+};
+```
+
 ## Why? ##
 
 Have you ever seen source map paths like below?
@@ -8,14 +35,21 @@ Have you ever seen source map paths like below?
 - webpack:///./bla-bla-bla
 - webpack:///~/bla-bla-bla
 - webpack:///webpack:///bla-bla-bla
+- webpack:///~/bla-bla-bla/~/bla-bla-bla
+- webpack:///(webpack)-bla-bla-bla
+- webpack:///(webpack)/bla-bla-bla
+- webpack:///webpack/bootstrap bla-bla-bla
 
 This plugin performs a trivial fix on source map path to normalize path:
 
 ```javascript
-path
-  .replace('webpack:///webpack:///', 'webpack:///')
-  .replace('webpack:///./', 'webpack:///')
-  .replace('webpack:///~/', 'webpack:///node_modules/');
+var relPath = path
+  .replace(/^.*~/, '~')
+  .replace(/^(webpack:\/\/\/)+/, '')
+  .replace(/^\.\//, '')
+  .replace(/^\(webpack\)-/, '(webpack)/')
+  .replace(/^webpack\/bootstrap/, '(webpack)/bootstrap');
+return 'webpack:///' + relPath + '?' + info.hash;
 ```
 
 - `/~/` is well know alias for node_modules when css import is used
@@ -37,13 +71,14 @@ var WebpackSourceMapFixPlugin = require('webpack-source-map-fix-plugin');
 
 module.exports = {
   ...
+  devtool: 'source-map',
+  ...
   plugins: [
     ...
     new WebpackSourceMapFixPlugin()
   ];
   ...
 }
-...
 ```
 
 ## Limitations ##
