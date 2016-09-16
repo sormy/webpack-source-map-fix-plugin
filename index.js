@@ -28,7 +28,7 @@ SourceMapFixPlugin.prototype.fixSourceMapObject = function (sourceMap) {
 
 SourceMapFixPlugin.prototype.fixSourcePath = function (path) {
   var relPath = path
-    .replace(/^.*~/, '~')
+    .replace(/^.*(~|node_modules)/, '~')
     .replace(/^(webpack:\/\/\/)+/, '')
     .replace(/^\.\//, '')
     .replace(/^\(webpack\)-/, '(webpack)/')

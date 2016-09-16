@@ -14,7 +14,7 @@ modules.exports = {
 
     devtoolModuleFilenameTemplate: function (info) {
       var relPath = info.resourcePath
-        .replace(/^.*~/, '~')
+        .replace(/^.*(~|node_modules)/, '~')
         .replace(/^(webpack:\/\/\/)+/, '')
         .replace(/^\.\//, '')
         .replace(/^\(webpack\)-/, '(webpack)/')
